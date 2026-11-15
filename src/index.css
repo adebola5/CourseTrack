@@ -1,0 +1,116 @@
+/* Global styling: colour themes, base elements and accessibility basics */
+
+/* One blue family only. Change the colours here and the whole app updates. */
+
+/* DARK theme (default) - a richer royal blue with brighter text */
+:root {
+  --bg: #1d4390;           /* page */
+  --surface: #254d9f;      /* cards and panels */
+  --surface-2: #2f59ad;    /* headers, hover, progress track */
+  --field: #173a7c;        /* inputs (darker than the cards so the text stands out) */
+  --line: #6b8fd3;         /* every border uses this one colour */
+  --line-strong: #9bb9ea;
+  --text: #ffffff;
+  --muted: #e4edfd;        /* small text, almost as bright as the main text */
+
+  --primary: #b8e0ff;      /* buttons, active chips, key numbers */
+  --on-primary: #0b2557;   /* text that sits on --primary */
+  --accent: #b8e0ff;
+  --nav-bg: #163672;
+  --nav-link: #eaf2ff;
+  --danger: #ffa3b5;       /* only used for the red * and delete hover */
+  --focus: #ffdd57;        /* keyboard focus ring */
+
+  --radius: 0.75rem;
+  --font-head: "Source Serif 4", Georgia, serif;
+  --font-body: "Source Sans 3", system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+/* LIGHT theme - switched on by the toggle in the navbar (data-theme="light" is set on <html>).
+   Light blue #b8e0ff is the page background and navy #0b2557 is the text */
+[data-theme="light"] {
+  --bg: #b8e0ff;          /* page */
+  --surface: #d4ebff;     /* cards and panels, a lighter tint of the page */
+  --surface-2: #a6d3f7;   /* headers, hover, progress track */
+  --field: #e8f4ff;       /* inputs */
+  --line: #7fb0dd;        /* every border uses this one colour */
+  --line-strong: #4f86bb;
+  --text: #0b2557;        /* all text */
+  --muted: #1d3f78;       /* small text, a touch softer than the main text */
+
+  --primary: #0b2557;     /* buttons, active chips, key numbers */
+  --on-primary: #b8e0ff;  /* text that sits on --primary */
+  --accent: #0b2557;
+  --nav-bg: #0b2557;
+  --nav-link: #d9edff;
+  --danger: #a3153a;
+  --focus: #0b2557;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* "Larger text" button in the navbar sets data-text="large", everything is in rem so it all scales */
+html {
+  font-size: 100%;
+}
+
+html[data-text="large"] {
+  font-size: 120%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--bg);
+}
+
+h1, h2, h3 {
+  margin: 0;
+  font-family: var(--font-head);
+  font-weight: 700;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* clear focus ring for keyboard users */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* people who ask their device for less motion get no animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* people who ask their device for more contrast get stronger borders and text */
+@media (prefers-contrast: more) {
+  :root, :root[data-theme] {
+    --line: var(--line-strong);
+    --muted: var(--text);
+  }
+}
