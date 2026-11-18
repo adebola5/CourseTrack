@@ -1,0 +1,811 @@
+/* Styles for everything rendered by App.jsx.
+   Flat design: no shadows, one border colour, one accent colour. */
+
+/* ===== Accessibility: skip link (only shows when tabbed to) ===== */
+.skip-link {
+  position: absolute;
+  top: -4rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  color: #0f2a62;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ===== Page layout ===== */
+main {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+main:focus {
+  outline: none;
+}
+
+.page-header {
+  margin-bottom: 2.5rem;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.page-header h1 {
+  margin: 0.4rem 0 0.5rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.15;
+}
+
+.page-subtitle {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+/* ===== Navigation bar ===== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  padding: 1rem 5%;
+  background: var(--nav-bg);
+  color: #ffffff;
+  border-bottom: 3px solid #b8e0ff;
+}
+
+nav h2 {
+  font-size: 1.45rem;
+}
+
+nav :focus-visible {
+  outline-color: #ffdd57;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.75rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-links a {
+  padding: 0.5rem 0.85rem;
+  border-bottom: 3px solid transparent;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--nav-link);
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+}
+
+.nav-links a.active {
+  color: #ffffff;
+  border-bottom-color: #b8e0ff;
+}
+
+.nav-tools {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tool-btn {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.tool-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.tool-btn[aria-pressed="true"] {
+  background: #b8e0ff;
+  border-color: #b8e0ff;
+  color: #0b2557;
+}
+
+/* ===== Statistics: one strip split by thin lines instead of 4 separate boxes ===== */
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1px;                       /* the 1px gaps show the line colour behind */
+  margin-bottom: 2.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--line);
+}
+
+.stat-card {
+  padding: 1.5rem 1.75rem;
+  background: var(--surface);
+}
+
+.stat-card h3 {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.stat-card p {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-head);
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--primary);
+}
+
+/* ===== Generic panel ===== */
+.panel {
+  padding: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.panel-title {
+  margin-bottom: 0.25rem;
+  font-size: 1.25rem;
+}
+
+.panel-hint {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+}
+
+/* ===== Search, filters and categories: one frame, two sections split by a line ===== */
+.controls {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  margin-bottom: 2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.controls .panel {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.controls .panel-categories {
+  border-left: 1px solid var(--line);
+}
+
+.group-label {
+  display: block;
+  margin: 1.5rem 0 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.chip:hover {
+  background: var(--surface-2);
+}
+
+.chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.chip-count {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.results-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+}
+
+.results-bar strong {
+  color: var(--text);
+}
+
+.btn-link {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* ===== Form controls ===== */
+input,
+select {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.5rem;
+  background-color: var(--field);
+  color: var(--text);
+}
+
+input::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent);
+}
+
+input:disabled {
+  opacity: 0.55;
+  background-color: var(--surface-2);
+  cursor: not-allowed;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23b8e0ff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 9l7 7 7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+}
+
+[data-theme="light"] select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230b2557' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 9l7 7 7-7'/%3E%3C/svg%3E");
+}
+
+select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.search-field input {
+  padding-left: 2.75rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23b8e0ff' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0.9rem center;
+}
+
+[data-theme="light"] .search-field input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230b2557' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E");
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.req {
+  margin-left: 0.2rem;
+  color: var(--danger);
+}
+
+.field-hint {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.2rem;
+  border: 1.5px solid var(--primary);
+  border-radius: 0.5rem;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-weight: 700;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--primary);
+}
+
+.btn-ghost:hover {
+  filter: none;
+  background: var(--surface-2);
+}
+
+/* delete is a plain outline button, it only turns red when you hover it */
+.btn-danger {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+.btn-danger:hover {
+  filter: none;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn-lg {
+  padding: 0.8rem 1.75rem;
+  font-size: 1.05rem;
+}
+
+/* ===== Course cards ===== */
+.course-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  gap: 1.75rem;
+}
+
+.course-list > div {
+  display: flex;
+}
+
+.course-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color 0.15s;
+}
+
+.course-card:hover {
+  border-color: var(--line-strong);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* status is shown with the badge style, not with different colours:
+   Completed = filled, In Progress = outlined, Planned = faded */
+.status-badge {
+  padding: 0.15rem 0.7rem;
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.is-completed .status-badge {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.is-planned .status-badge {
+  border-color: var(--line-strong);
+  border-style: dashed;
+  color: var(--muted);
+}
+
+.category-tag {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.card-title {
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+.progress-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.progress-row strong {
+  color: var(--text);
+}
+
+progress {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  height: 0.6rem;
+  border: none;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+progress::-webkit-progress-bar {
+  background: var(--surface-2);
+}
+
+progress::-webkit-progress-value {
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+progress::-moz-progress-bar {
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+/* Edit and Delete sit side by side with a clear gap, split off by a line */
+.card-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.card-actions .btn {
+  flex: 1;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  padding: 3.5rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ===== Overview panel on the home page ===== */
+.overview .progress-row {
+  font-size: 1rem;
+}
+
+/* ===== Add course form ===== */
+.form-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 19rem;
+  gap: 2rem;
+  align-items: start;
+}
+
+.course-form {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.form-header {
+  padding: 1.5rem 2rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.form-header h2 {
+  font-size: 1.35rem;
+}
+
+.form-header p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.form-section {
+  padding: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.step {
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.field-full {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+}
+
+.form-note {
+  margin-right: auto;
+  color: var(--muted);
+}
+
+.tips-list {
+  display: grid;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+}
+
+.tips-list li {
+  padding-left: 1rem;
+  border-left: 2px solid var(--line-strong);
+}
+
+.tips-list strong {
+  display: block;
+  color: var(--text);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 800px) {
+  .controls,
+  .form-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .controls .panel-categories {
+    border-left: none;
+    border-top: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  main {
+    padding: 2rem 1rem 3.5rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-header,
+  .form-section,
+  .form-actions {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+/* ===== Small text: easier to read in both themes ===== */
+.panel-hint,
+.field-hint,
+.form-note,
+.results-bar,
+.progress-row,
+.category-tag,
+.group-label,
+.stat-card h3 {
+  font-weight: 600;        /* slightly bolder so thin small text doesnt fade into the background */
+}
+
+.category-tag {
+  color: var(--text);      /* the category on each card is full strength text */
+}
+
+input::placeholder {
+  color: #c3d5f3;
+  opacity: 1;
+}
+
+[data-theme="light"] input::placeholder {
+  color: #3b5f95;
+}
+
+input:disabled {
+  opacity: 0.75;
+}
+
+/* Learning milestones */
+.milestone-section {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.milestone-section h3 {
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.milestone-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.milestone-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.milestone-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex: 1;
+}
+
+.milestone-label input {
+  width: auto;
+}
+
+.milestone-completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.milestone-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.add-milestone {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.add-milestone input {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .milestone-item {
+    align-items: flex-start;
+  }
+
+  .milestone-actions {
+    width: 100%;
+  }
+}
+
+/* Course creation success notification */
+.success-notification {
+  position: fixed;
+  top: 90px;
+  right: 24px;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 20px;
+  border-radius: 8px;
+
+  background: #e0f2e9;
+  color: #176b43;
+  border: 1px solid #a7d8bd;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+
+  animation: notification-slide-in 0.3s ease;
+}
+
+.success-notification span {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+@keyframes notification-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .success-notification {
+    right: 12px;
+    left: 12px;
+    top: 80px;
+  }
+}

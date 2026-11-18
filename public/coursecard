@@ -1,0 +1,31 @@
+//this component dispays an indiviual course
+//import App from "../App";
+//when you call courseCard anywhere, you need to pass the props and since the dashboard.jsx calls it, it needs to pass the id
+export default function CourseCard({ id, title, category, status, progress, onDeleteCourse}) {
+  return (
+    <div className="course-card">
+      <h2>{title}</h2>
+      <p>Category: {category}</p>
+      <p className={`status ${status.toLowerCase().replace(" ", "-")}`}>
+        Status :
+        {status === "Completed"
+          ? " Course Completed!"
+          : status === "In Progress"
+            ? " Currently Learning"
+            : " Not Started Yet"}
+      </p>
+      {/*this displays the progress as a bar */}
+      <p>Progress: {progress}%</p>
+      <progress value={progress} max={100}></progress>
+
+          {/*this is the button for editing, when clicked it sets the editing state to true which will switch the programme into editing mode.*/}
+       <button onClick={() => setIsEditing(true)}>Edit</button>
+
+      {/*this is the button that allows the user to delete a course*/}
+      {/*arrow function, because it parses a prop/attribute*/}
+      <button onClick={() => onDeleteCourse(id)}> {/*this function passes the id which is what will be used to delete the course */}
+        Delete Course
+      </button>
+    </div>
+  );
+}
