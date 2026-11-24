@@ -1,4 +1,5 @@
 //This page displays the course statistics
+import { Link } from "react-router-dom";
 export default function HomePage({ courses }) {
 
     //Statistics section
@@ -30,6 +31,13 @@ export default function HomePage({ courses }) {
                 <span className="eyebrow">Overview</span>
                 <h1>My Learning Dashboard</h1>
                 <p className="page-subtitle">Everything you are learning, finishing and planning, at a glance.</p>
+
+                {/*NEW: quick links to the other pages. Link works like an <a> tag but moves to the page without reloading the app*/}
+                <div className="quick-links">
+                    <Link to="/courses" className="btn btn-primary">View my courses</Link>
+                    <Link to="/add-course" className="btn btn-ghost">Add a course</Link>
+                    <Link to="/study-planner" className="btn btn-ghost">Plan a study session</Link>
+                </div>
             </header>
 
             {/*CHANGED: each stat box now has the class stat-card, this is what gives it the border and shadow in the css.

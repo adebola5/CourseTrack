@@ -1,0 +1,1860 @@
+/* Styles for everything rendered by App.jsx.
+   Flat design: no shadows, one border colour, one accent colour. */
+
+/* ===== Accessibility: skip link (only shows when tabbed to) ===== */
+.skip-link {
+  position: absolute;
+  top: -4rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  color: #0f2a62;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ===== Page layout ===== */
+main {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+main:focus {
+  outline: none;
+}
+
+.page-header {
+  margin-bottom: 2.5rem;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.page-header h1 {
+  margin: 0.4rem 0 0.5rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.15;
+}
+
+.page-subtitle {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+/* ===== Navigation bar ===== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  padding: 1rem 4%;                  /* CHANGED: was 5%, the navbar was wrapping onto two rows at 1280px */
+  background: var(--nav-bg);
+  color: #ffffff;
+  border-bottom: 3px solid #b8e0ff;
+}
+
+nav h2 {
+  font-size: 1.45rem;
+}
+
+nav :focus-visible {
+  outline-color: #ffdd57;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;              /* CHANGED: was 1.75rem */
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-links a {
+  padding: 0.5rem 0.75rem;
+  white-space: nowrap;               /* NEW: a link label never breaks over two lines */
+  border-bottom: 3px solid transparent;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--nav-link);
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+}
+
+.nav-links a.active {
+  color: #ffffff;
+  border-bottom-color: #b8e0ff;
+}
+
+.nav-tools {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tool-btn {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.tool-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.tool-btn[aria-pressed="true"] {
+  background: #b8e0ff;
+  border-color: #b8e0ff;
+  color: #0b2557;
+}
+
+/* ===== Statistics: one strip split by thin lines instead of 4 separate boxes ===== */
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1px;                       /* the 1px gaps show the line colour behind */
+  margin-bottom: 2.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--line);
+}
+
+.stat-card {
+  padding: 1.5rem 1.75rem;
+  background: var(--surface);
+}
+
+.stat-card h3 {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.stat-card p {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-head);
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--primary);
+}
+
+/* ===== Generic panel ===== */
+.panel {
+  padding: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.panel-title {
+  margin-bottom: 0.25rem;
+  font-size: 1.25rem;
+}
+
+.panel-hint {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+}
+
+/* ===== Search, filters and categories: one frame, two sections split by a line ===== */
+.controls {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  margin-bottom: 2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.controls .panel {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.controls .panel-categories {
+  border-left: 1px solid var(--line);
+}
+
+.group-label {
+  display: block;
+  margin: 1.5rem 0 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.chip:hover {
+  background: var(--surface-2);
+}
+
+.chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.chip-count {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.results-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+}
+
+.results-bar strong {
+  color: var(--text);
+}
+
+.btn-link {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* ===== Form controls ===== */
+input,
+select {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.5rem;
+  background-color: var(--field);
+  color: var(--text);
+}
+
+input::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent);
+}
+
+input:disabled {
+  opacity: 0.55;
+  background-color: var(--surface-2);
+  cursor: not-allowed;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23b8e0ff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 9l7 7 7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+}
+
+[data-theme="light"] select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230b2557' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 9l7 7 7-7'/%3E%3C/svg%3E");
+}
+
+select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.search-field input {
+  padding-left: 2.75rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23b8e0ff' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0.9rem center;
+}
+
+[data-theme="light"] .search-field input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230b2557' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E");
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.req {
+  margin-left: 0.2rem;
+  color: var(--danger);
+}
+
+.field-hint {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.2rem;
+  border: 1.5px solid var(--primary);
+  border-radius: 0.5rem;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-weight: 700;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--primary);
+}
+
+.btn-ghost:hover {
+  filter: none;
+  background: var(--surface-2);
+}
+
+/* delete is a plain outline button, it only turns red when you hover it */
+.btn-danger {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+.btn-danger:hover {
+  filter: none;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn-lg {
+  padding: 0.8rem 1.75rem;
+  font-size: 1.05rem;
+}
+
+/* ===== Course cards ===== */
+.course-list {
+  display: grid;
+  grid-template-columns: 1fr;           /* one wide card per row, the columns now live inside the card */
+  gap: 1.75rem;
+}
+
+.course-list > div {
+  display: flex;
+}
+
+.course-card {
+  flex: 1;
+  display: grid;                        /* 3 columns: details | learning path | resources */
+  grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr) minmax(0, 1fr);
+  padding: 2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color 0.15s;
+}
+
+.course-card:hover {
+  border-color: var(--line-strong);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* status is shown with the badge style, not with different colours:
+   Completed = filled, In Progress = outlined, Planned = faded */
+.status-badge {
+  padding: 0.15rem 0.7rem;
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.is-completed .status-badge {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.is-planned .status-badge {
+  border-color: var(--line-strong);
+  border-style: dashed;
+  color: var(--muted);
+}
+
+.category-tag {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.card-title {
+  font-size: 1.9rem;                  /* bigger so the course title stands out in the card */
+  line-height: 1.2;
+}
+
+.progress-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.progress-row strong {
+  color: var(--text);
+}
+
+progress {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  height: 0.6rem;
+  border: none;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+progress::-webkit-progress-bar {
+  background: var(--surface-2);
+}
+
+progress::-webkit-progress-value {
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+progress::-moz-progress-bar {
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+/* Edit and Delete sit side by side with a clear gap, split off by a line */
+.card-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.card-actions .btn {
+  flex: 1;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  padding: 3.5rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ===== Overview panel on the home page ===== */
+.overview .progress-row {
+  font-size: 1rem;
+}
+
+/* ===== Add course form ===== */
+.form-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 19rem;
+  gap: 2rem;
+  align-items: start;
+}
+
+.course-form {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.form-header {
+  padding: 1.5rem 2rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.form-header h2 {
+  font-size: 1.35rem;
+}
+
+.form-header p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.form-section {
+  padding: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.step {
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.field-full {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+}
+
+.form-note {
+  margin-right: auto;
+  color: var(--muted);
+}
+
+.tips-list {
+  display: grid;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+}
+
+.tips-list li {
+  padding-left: 1rem;
+  border-left: 2px solid var(--line-strong);
+}
+
+.tips-list strong {
+  display: block;
+  color: var(--text);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 800px) {
+  .controls,
+  .form-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .controls .panel-categories {
+    border-left: none;
+    border-top: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    position: static;                 /* NEW: on phones the navbar scrolls away, it was taking about a third of the screen while sticky */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+  }
+
+  main {
+    padding: 2rem 1rem 3.5rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-header,
+  .form-section,
+  .form-actions {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+/* ===== Small text: easier to read in both themes ===== */
+.panel-hint,
+.field-hint,
+.form-note,
+.results-bar,
+.progress-row,
+.category-tag,
+.group-label,
+.stat-card h3 {
+  font-weight: 600;        /* slightly bolder so thin small text doesnt fade into the background */
+}
+
+.category-tag {
+  color: var(--text);      /* the category on each card is full strength text */
+}
+
+input::placeholder {
+  color: #c3d5f3;
+  opacity: 1;
+}
+
+[data-theme="light"] input::placeholder {
+  color: #3b5f95;
+}
+
+input:disabled {
+  opacity: 0.75;
+}
+
+/* ===== Course card columns ===== */
+/* left column: status, title, progress, Edit / Delete */
+.card-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-right: 2rem;
+}
+
+/* when a course is being edited the form uses the full width of the card */
+.course-card > .edit-form {
+  grid-column: 1 / -1;
+  max-width: 42rem;
+}
+
+/* smaller, fully rounded buttons used for milestones and resources */
+.btn-sm {
+  padding: 0.3rem 0.85rem;
+  border-width: 1px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+a.btn {
+  text-decoration: none;
+}
+
+/* middle and right columns, split by a thin line */
+.milestone-section,
+.resource-section {
+  min-width: 0;
+  padding: 0 2rem;
+  border-left: 1px solid var(--line);
+}
+
+.resource-section {
+  padding-right: 0;
+}
+
+.milestone-section h3,
+.resource-section h4 {
+  margin: 0 0 1rem;
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+}
+
+/* long lists scroll inside the column instead of making the card taller */
+.milestone-list,
+.resource-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-height: 16rem;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  padding: 0.2rem;
+}
+
+/* Learning milestones */
+.milestone-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.milestone-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.milestone-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex: 1;
+  min-width: 8rem;
+}
+
+.milestone-label input {
+  width: auto;
+  accent-color: var(--primary);
+}
+
+.milestone-completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.milestone-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+/* the text box that appears while a milestone is being edited */
+.milestone-item > input {
+  flex: 1;
+  width: auto;
+  min-width: 8rem;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.add-milestone {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.add-milestone input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+/* ===== Notifications =====
+   success = green (course added, account created)
+   error   = red / warm (connection errors)
+   info    = neutral blue (confirmations like "deleted", and the session expired message)
+   they all share the same shape, only the colours change. each kind has a set of colours for dark mode and one for light mode */
+.success-notification,
+.modal-success {
+  --note-bg: #14532d;
+  --note-text: #ecfdf5;
+  --note-line: #4ade80;
+  --note-icon: #4ade80;
+  --note-icon-text: #052e16;
+}
+
+.error-notification {
+  --note-bg: #7f1d1d;
+  --note-text: #fef2f2;
+  --note-line: #fca5a5;
+  --note-icon: #fca5a5;
+  --note-icon-text: #450a0a;
+}
+
+.info-notification {
+  --note-bg: #0b2557;
+  --note-text: #eaf4ff;
+  --note-line: #b8e0ff;
+  --note-icon: #b8e0ff;
+  --note-icon-text: #0b2557;
+}
+
+[data-theme="light"] .success-notification,
+[data-theme="light"] .modal-success {
+  --note-bg: #e6f6ec;
+  --note-text: #0f3d24;
+  --note-line: #2f9e63;
+  --note-icon: #1f7a4a;
+  --note-icon-text: #ffffff;
+}
+
+[data-theme="light"] .error-notification {
+  --note-bg: #fdecee;
+  --note-text: #5c0f1d;
+  --note-line: #d1435b;
+  --note-icon: #b3203f;
+  --note-icon-text: #ffffff;
+}
+
+[data-theme="light"] .info-notification {
+  --note-bg: #ffffff;
+  --note-text: #0b2557;
+  --note-line: #2468c9;
+  --note-icon: #0b2557;
+  --note-icon-text: #b8e0ff;
+}
+
+.success-notification,
+.error-notification,
+.info-notification {
+  position: fixed;
+  top: 6rem;                          /* just under the navbar. rem so it still clears the navbar when Larger text is on */
+  right: 1.5rem;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+
+  width: max-content;
+  max-width: min(26rem, calc(100vw - 2rem));   /* never wider than the screen */
+  padding: 0.85rem 1rem 0.85rem 0.9rem;
+  border: 1px solid var(--note-line);
+  border-left-width: 5px;
+  border-radius: var(--radius);
+
+  background: var(--note-bg);
+  color: var(--note-text);
+  font-weight: 600;
+  line-height: 1.4;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+
+  animation: notification-slide-in 0.3s ease;
+}
+
+/* an error covers a confirmation if they ever show at the same time */
+.error-notification {
+  z-index: 1100;
+}
+
+/* the icon (check mark, ! or i) sits in a small circle */
+.success-notification > span,
+.error-notification > span,
+.info-notification > span {
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--note-icon);
+  color: var(--note-icon-text);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* title + message (used by the connection error) */
+.notification-text strong {
+  display: block;
+}
+
+.notification-text p {
+  margin: 0.15rem 0 0;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+/* the x button that closes the error and the session expired pop ups */
+.notification-close {
+  align-self: flex-start;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.notification-close:hover {
+  background: color-mix(in srgb, currentColor 18%, transparent);
+}
+
+@keyframes notification-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes notification-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* on phones the notification moves to the bottom so it never covers the navbar or the page heading */
+@media (max-width: 40rem) {
+  .success-notification,
+  .error-notification,
+  .info-notification {
+    top: auto;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    max-width: none;
+    animation-name: notification-slide-up;
+  }
+}
+
+/* the account created pop up on the register page (it used to have its colours written inside Register.jsx) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 26rem;
+  max-height: calc(100vh - 2.5rem);
+  overflow-y: auto;
+  padding: 1.75rem;
+  border: 1px solid var(--note-line);
+  border-top-width: 5px;
+  border-radius: var(--radius);
+  background: var(--note-bg);
+  color: var(--note-text);
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+}
+
+.modal-card h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.4rem;
+}
+
+.modal-card p {
+  margin: 0 0 1.5rem;
+}
+
+/* loading and error lines that App.jsx shows above the pages */
+.app-status {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 0;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.app-status-error {
+  color: var(--danger);
+}
+
+/* error messages inside cards and forms (they used to be plain text) */
+.course-card > .form-error {
+  grid-column: 1 / -1;                /* takes the full width of the card instead of becoming one of the 3 columns */
+  margin: 0;
+}
+
+.course-form > .form-error {
+  margin: 1.25rem 2rem 0;
+}
+
+.planner-form > .form-error {
+  margin: 1.25rem 1.4rem 0;
+}
+
+@media (max-width: 600px) {
+  .course-form > .form-error {
+    margin: 1.25rem 1.25rem 0;
+  }
+}
+
+
+/* Course Resources */
+.resource-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.75rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+}
+
+.resource-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 8rem;
+  gap: 0.1rem;
+}
+
+.resource-info span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.resource-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+/* add / edit resource forms: title and link on their own lines, then type + button */
+.resource-form,
+.resource-edit-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.resource-edit-form {
+  flex: 1 1 100%;
+}
+
+.resource-form input,
+.resource-edit-form input {
+  flex: 1 1 100%;
+  min-width: 0;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+.resource-form select,
+.resource-edit-form select {
+  flex: 1 1 8rem;
+  width: auto;
+  padding: 0.5rem 2rem 0.5rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+/* ===== Course card: smaller screens ===== */
+@media (max-width: 62rem) {
+  /* details go on top, learning path and resources sit side by side underneath */
+  .course-card {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card-main {
+    grid-column: 1 / -1;
+    padding: 0 0 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .milestone-section {
+    padding: 0 1.5rem 0 0;
+    border-left: none;
+  }
+
+  .resource-section {
+    padding: 0 0 0 1.5rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  /* everything stacks in one column */
+  .course-card {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+
+  .card-main {
+    padding: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+
+  .milestone-section,
+  .resource-section {
+    margin-top: 1.5rem;
+    padding: 1.5rem 0 0;
+    border-left: none;
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* ===== Login and Register pages ===== */
+/* keeps the page narrow and centered */
+.auth-wrap {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.auth-wrap-wide {
+  max-width: 40rem;
+}
+
+/* same card look as the add course form (it also uses form-header, form-section and form-actions) */
+.auth-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+/* the submit button stretches across the whole card */
+.auth-submit {
+  flex: 1;
+}
+
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Show / Hide button that sits inside the password input */
+.password-wrap {
+  position: relative;
+}
+
+.password-wrap input {
+  padding-right: 4.75rem;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.password-toggle:hover {
+  background: var(--surface-2);
+}
+
+/* error messages: under a field, or above the fields for server errors */
+.field-error {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+input[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.form-error {
+  margin: 0 0 1.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--danger);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+/* "Already have an account?" / "New to CourseTrack?" line under the card */
+.auth-switch {
+  margin: 1.5rem 0 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+.auth-switch a {
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* ===== Study planner ===== */
+/* small form on the left, scheduled sessions on the right */
+.planner-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 23rem) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+/* a smaller version of the add course form card so it does not take over the page */
+.planner-form {
+  position: sticky;
+  top: 6rem;                          /* stays in view under the navbar while the sessions scroll */
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.planner-form .form-header {
+  padding: 1.1rem 1.4rem;
+}
+
+.planner-form .form-header h2 {
+  font-size: 1.15rem;
+}
+
+.planner-form .form-header p {
+  font-size: 0.875rem;
+}
+
+.planner-form .form-section {
+  padding: 1.25rem 1.4rem;
+  border-bottom: none;
+}
+
+.planner-form .form-grid {
+  gap: 1rem;
+}
+
+.planner-form .form-actions {
+  padding: 0 1.4rem 1.4rem;
+}
+
+.planner-form .form-actions .btn {
+  flex: 1;
+}
+
+/* the description box uses the same look as the inputs */
+textarea {
+  width: 100%;
+  min-height: 6rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.5rem;
+  background-color: var(--field);
+  color: var(--text);
+  resize: vertical;
+}
+
+textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+textarea:focus {
+  border-color: var(--accent);
+}
+
+.study-sessions-section h2 {
+  margin-bottom: 1.25rem;
+  font-size: 1.5rem;
+}
+
+.study-sessions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* each session card: date tile | details | buttons */
+.study-session-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color 0.15s;
+}
+
+.study-session-card:hover {
+  border-color: var(--line-strong);
+}
+
+.session-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 4.25rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.session-month {
+  width: 100%;
+  padding: 0.2rem 0;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.session-day {
+  padding: 0.25rem 0 0.35rem;
+  font-family: var(--font-head);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.session-title {
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+.session-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.6rem 0 0.9rem;
+}
+
+.session-meta span {
+  padding: 0.15rem 0.75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.session-description {
+  margin: 0;
+  color: var(--text);
+}
+
+.session-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+@media (max-width: 800px) {
+  .planner-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .planner-form {
+    position: static;
+    max-width: 32rem;                 /* NEW: the small form no longer stretches across the whole tablet screen */
+  }
+}
+
+@media (max-width: 40rem) {
+  /* the buttons drop under the details */
+  .study-session-card {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .session-actions {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ===== Navigation links ===== */
+/* the CourseTrack name in the navbar is a link but keeps looking like a heading */
+nav h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* the users name and the Log out button */
+.nav-account {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-user {
+  max-width: 14rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  color: var(--nav-link);
+}
+
+.nav-user strong {
+  color: #ffffff;
+}
+
+/* buttons that are really links (the quick links on the home page) */
+.quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* plain text links, for example "Add your first course" and "Go back home" */
+.text-link {
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+/* ===== AI Academic Assistant ===== */
+.ai-page {
+  max-width: 78rem;
+}
+
+.ai-page-header {
+  margin-bottom: 1.5rem;
+}
+
+.ai-workspace {
+  display: grid;
+  grid-template-columns: 16rem minmax(0, 1fr);
+  min-height: 38rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.ai-sidebar {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1.1rem;
+  border-right: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.ai-new-chat {
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.ai-history-heading {
+  margin: 1.5rem 0 0.65rem;
+}
+
+.ai-history-heading h2 {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.ai-conversation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-height: 22rem;
+  overflow-y: auto;
+}
+
+.ai-conversation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+}
+
+.ai-conversation-item:hover,
+.ai-conversation-item.active {
+  border-color: var(--line);
+  background: var(--surface);
+}
+
+.ai-conversation-title {
+  overflow: hidden;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ai-conversation-date,
+.ai-muted {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.ai-history-empty {
+  line-height: 1.5;
+}
+
+.ai-usage-card {
+  margin-top: auto;
+  padding: 0.9rem 0.75rem 0.2rem;
+  border-top: 1px solid var(--line);
+}
+
+.ai-usage-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.ai-usage-track {
+  height: 0.45rem;
+  margin: 0.65rem 0 0.4rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--field);
+}
+
+.ai-usage-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--primary);
+  transition: width 0.2s ease;
+}
+
+.ai-usage-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.ai-chat-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 38rem;
+}
+
+.ai-chat-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.ai-chat-topbar h2 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.ai-chat-topbar p {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.ai-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.ai-status span {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #48a878;
+}
+
+.ai-message-area {
+  flex: 1;
+  min-height: 20rem;
+  max-height: 34rem;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.ai-empty-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 19rem;
+  max-width: 34rem;
+  margin: 0 auto;
+  color: var(--muted);
+  text-align: center;
+}
+
+.ai-welcome-icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--primary);
+  font-size: 1.5rem;
+}
+
+.ai-empty-state h3 {
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  font-size: 1.45rem;
+}
+
+.ai-empty-state p {
+  margin: 0;
+}
+
+.ai-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 54rem;
+  margin: 0 auto;
+}
+
+.ai-message {
+  max-width: min(88%, 42rem);
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+}
+
+.ai-message-user {
+  align-self: flex-end;
+  background: var(--surface-2);
+}
+
+.ai-message-assistant {
+  align-self: flex-start;
+  background: var(--field);
+}
+
+.ai-message-author {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.ai-message p {
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.ai-thinking p {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.ai-composer {
+  padding: 1rem 1.4rem 1.2rem;
+  border-top: 1px solid var(--line);
+}
+
+.ai-composer textarea {
+  display: block;
+  width: 100%;
+  min-height: 4rem;
+  resize: vertical;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.6rem;
+  background: var(--field);
+  color: var(--text);
+}
+
+.ai-composer textarea::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.ai-composer-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.65rem;
+}
+
+.ai-composer-footer > span {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.ai-composer .btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.ai-error {
+  margin: 0 0 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--danger);
+  border-radius: 0.5rem;
+  color: var(--danger);
+  background: var(--surface);
+}
+
+.ai-disclaimer {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 760px) {
+  .ai-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .ai-conversation-list {
+    max-height: 10rem;
+  }
+
+  .ai-usage-card {
+    margin-top: 1rem;
+  }
+
+  .ai-chat-panel {
+    min-height: 32rem;
+  }
+
+  .ai-message-area {
+    max-height: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-chat-topbar,
+  .ai-composer-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ai-message {
+    max-width: 96%;
+  }
+}
+
+/* ===== Logo ===== */
+/* the logo and the name sit side by side in the navbar */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.brand-logo {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+}
+
+/* "Track" is light blue, "Course" keeps the white of the navbar */
+.brand-accent {
+  color: #b8e0ff;
+}

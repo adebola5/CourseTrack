@@ -1,28 +1,36 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+# frontend dependencies and build files
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
 
-node_modules
-dist
-dist-ssr
-*.local
+# backend build files
+backend/**/bin/
+backend/**/obj/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-# Environment variables These rules tell Git not to upload environment files that may contain passwords, API keys or database credentials.
+# environment variables and secrets
 .env
 .env.*
-!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# logs
+*.log
+logs/
+
+# editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.user
+*.suo
+
+# Visual Studio local files
+**/.vs/
+
+
+# local backend configuration and Visual Studio files
+backend/**/appsettings.Development.json
+backend/**/*.csproj.user
+backend/**/launchSettings.json

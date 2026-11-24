@@ -1,0 +1,188 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+@CourseTrack.API_HostAddress = http://localhost:5195
+@token = //removed
+@conversationId = REPLACE_WITH_CONVERSATION_ID
+### Register a user
+POST {{CourseTrack.API_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+    "email": "test@example.com",
+    "password": "CourseTrack123!"
+}
+
+### Login
+POST {{CourseTrack.API_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "test@example.com",
+    "password": "CourseTrack123!"
+}
+
+### Get all courses without authentication
+GET {{CourseTrack.API_HostAddress}}/api/courses
+
+### Test authenticated course request
+GET {{CourseTrack.API_HostAddress}}/api/courses
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Create a course
+POST {{CourseTrack.API_HostAddress}}/api/courses
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "React Development",
+    "category": "Programming",
+    "status": "In Progress",
+    "progress": 25
+}
+
+### Get a specific course
+GET {{CourseTrack.API_HostAddress}}/api/courses/1
+Authorization: Bearer {{token}}
+
+### Update a course
+PUT {{CourseTrack.API_HostAddress}}/api/courses/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "Advanced React Development",
+    "category": "Programming",
+    "status": "In Progress",
+    "progress": 40
+}
+
+### Delete a course
+DELETE {{CourseTrack.API_HostAddress}}/api/courses/1
+Authorization: Bearer {{token}}
+
+### Create a test course
+POST {{CourseTrack.API_HostAddress}}/api/courses
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "Milestone Testing",
+    "category": "Programming",
+    "status": "In Progress",
+    "progress": 0
+}
+
+    ### Create a milestone
+POST {{CourseTrack.API_HostAddress}}/api/courses/2/milestones
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "Complete React fundamentals",
+    "completed": false
+}
+
+### Get course milestones
+GET {{CourseTrack.API_HostAddress}}/api/courses/2/milestones
+Authorization: Bearer {{token}}
+
+### Update milestone
+PUT {{CourseTrack.API_HostAddress}}/api/courses/2/milestones/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "Complete React fundamentals",
+    "completed": true
+}
+
+### Delete milestone
+DELETE {{CourseTrack.API_HostAddress}}/api/courses/2/milestones/1
+Authorization: Bearer {{token}}
+
+### Create a resource
+POST {{CourseTrack.API_HostAddress}}/api/courses/2/resources
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "React Documentation",
+    "url": "https://react.dev/",
+    "type": "Website"
+}
+
+### Get course resources
+GET {{CourseTrack.API_HostAddress}}/api/courses/2/resources
+Authorization: Bearer {{token}}
+
+### Update resource
+PUT {{CourseTrack.API_HostAddress}}/api/courses/2/resources/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "Official React Documentation",
+    "url": "https://react.dev/learn",
+    "type": "Website"
+}
+
+### Delete resource
+DELETE {{CourseTrack.API_HostAddress}}/api/courses/2/resources/1
+Authorization: Bearer {{token}}
+
+### Create a study session
+POST {{CourseTrack.API_HostAddress}}/api/courses/2/study-sessions
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "date": "2026-11-22",
+    "startTime": "09:30:00",
+    "duration": 60,
+    "description": "Study React hooks"
+}
+
+### Get study sessions
+GET {{CourseTrack.API_HostAddress}}/api/courses/2/study-sessions
+Authorization: Bearer {{token}}
+
+### Update a study session
+PUT {{CourseTrack.API_HostAddress}}/api/courses/2/study-sessions/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "date": "2026-11-23",
+    "startTime": "10:00:00",
+    "duration": 90,
+    "description": "Study React state management"
+}
+
+### Delete a study session
+DELETE {{CourseTrack.API_HostAddress}}/api/courses/2/study-sessions/1
+Authorization: Bearer {{token}}
+
+### Get AI conversations
+GET {{CourseTrack.API_HostAddress}}/api/ai/conversations
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Create an AI conversation
+POST {{CourseTrack.API_HostAddress}}/api/ai/conversations
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get AI usage for today
+GET {{CourseTrack.API_HostAddress}}/api/ai/usage
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Send an AI message (replace conversationId with an ID returned above)
+POST {{CourseTrack.API_HostAddress}}/api/ai/conversations/{{conversationId}}/messages
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "content": "Explain the difference between a class and an object in C#."
+}

@@ -1,11 +1,12 @@
 //	Dashboard is the one displaying the course cards.
 import CourseCard from "./CourseCard";
 import { useState } from "react";
+import { Link } from "react-router-dom"; //NEW: for the link to the add course page
 
 {
   /*courses and the onDeleteCourse are from the props that are passed in the App.jsx,not from the CourseCard,jsx */
 }
-export default function Dashboard({ courses, onDeleteCourse, onUpdateCourse }) {
+export default function Dashboard({ courses, onDeleteCourse, onUpdateCourse, onShowMessage }) {
   // instead of importing the data , since we will now be getting an updated array wharn a new course is added, we will add receive it as a prop instead
   //create states that hold what the user types to search and the filte option
   const [searchTerm, setSearchTerm] = useState("");
@@ -228,13 +229,23 @@ export default function Dashboard({ courses, onDeleteCourse, onUpdateCourse }) {
                 course={course}
                 onDeleteCourse={onDeleteCourse}
                 onUpdateCourse={onUpdateCourse}
+                onShowMessage={onShowMessage} //NEW: lets the card show the delete pop up when a milestone or resource is deleted
               />
             </div>
           ))
         ) : (
           //else if there are no courses that match the filter conditions, then display no courses found
           //CHANGED: the message has a class now so it gets a dashed box in the css
-          <p className="empty-state">No courses found.</p>
+          <p className="empty-state">
+            No courses found.
+            {/*NEW: if there are no courses at all (not just none matching the filters) then show a link to add the first one*/}
+            {totalCourses === 0 && (
+              <>
+                {" "}
+                <Link to="/add-course" className="text-link">Add your first course</Link>
+              </>
+            )}
+          </p>
         )}
       </div>
     </main>

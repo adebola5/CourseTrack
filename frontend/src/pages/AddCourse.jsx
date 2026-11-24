@@ -1,6 +1,7 @@
 //this page displays the form to add new courses
 import AddCourseForm from "../components/AddCourseForm";
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom"; //NEW: for the link back to the courses page
 
 export default function AddCourse({ onAddCourse }) {
 
@@ -9,19 +10,18 @@ export default function AddCourse({ onAddCourse }) {
   const timeoutRef = useRef(null);
 
   //this function handles what happens when a course is added successfully
-  function handleAddCourse(newCourse) {
+//waits for the backend to save the course before showing success
+async function handleAddCourse(newCourse) {
+  await onAddCourse(newCourse);
 
-    //Calls the original course-adding function to handle adding the new course
-    onAddCourse(newCourse);
+  setShowSuccess(true);
 
-    setShowSuccess(true);// displays the notification.
+  clearTimeout(timeoutRef.current);
 
-    clearTimeout(timeoutRef.current); //Hides the notification after three seconds.
-
-    timeoutRef.current = setTimeout(() => {
-      setShowSuccess(false); //
-    }, 3000);
-  }
+  timeoutRef.current = setTimeout(() => {
+    setShowSuccess(false);
+  }, 3000);
+}
 
   useEffect(() => {
     return () => clearTimeout(timeoutRef.current);
@@ -42,6 +42,9 @@ export default function AddCourse({ onAddCourse }) {
       )}
       {/*CHANGED: the plain h2 was replaced with a page header so it matches the other pages*/}
       <header className="page-header">
+        {/*NEW: link back to the courses page*/}
+        <Link to="/courses" className="text-link back-link">&larr; Back to my courses</Link>
+        <br />
         <span className="eyebrow">New entry</span>
         <h1>Add a new course</h1>
         <p className="page-subtitle">
