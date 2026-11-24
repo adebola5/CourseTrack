@@ -1,13 +1,11 @@
 
-# Build stage
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-COPY . .
-RUN dotnet restore
-RUN dotnet publish -c Release -o /app/publish
+COPY backend/CourseTrack.API/ .
+RUN dotnet restore CourseTrack.API.csproj
+RUN dotnet publish CourseTrack.API.csproj -c Release -o /app/publish
 
-# Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 WORKDIR /app
 
