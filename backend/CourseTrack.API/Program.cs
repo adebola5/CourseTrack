@@ -28,16 +28,27 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     ));
 
 //allows the React frontend to communicate with the API
+var allowedOrigins = new List<string>
+{
+    "http://localhost:5173"
+};
+
+var frontendUrl = builder.Configuration["FrontendUrl"];
+
+if (!string.IsNullOrWhiteSpace(frontendUrl))
+{
+    allowedOrigins.Add(frontendUrl);
+}
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
+        policy.WithOrigins(allowedOrigins.ToArray())
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
-
 //configures identity for user registration and authentication
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
